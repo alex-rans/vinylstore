@@ -1,0 +1,43 @@
+name: vinylstore
+recipe: laravel
+excludes:
+  - htdocs/vendor
+  - htdocs/var/cache
+  - htdocs/node_modules
+config:
+  php: '7.4'
+  composer_version: '2.2.12'
+  via: apache:2.4
+  webroot: htdocs/public
+  database: mysql:5.7
+  cache: none
+  xdebug: false
+  config:
+services:
+  database:
+    database: laravel
+    username: laravel
+    password: laravel
+    host: database
+    port: 3306
+  node:
+    type: 'node:16'
+  phpmyadmin:
+    type: phpmyadmin
+tooling:
+  npm:
+    service: node
+    dir: /app/htdocs
+  composer:
+    service: appserver
+    cmd: composer
+    dir: /app/htdocs
+  console:
+    service: appserver
+    cmd: htdocs/bin/console
+  c:
+    service: appserver
+    cmd: htdocs/bin/console
+  symfony:
+    service: appserver
+    dir: /app/htdocs
