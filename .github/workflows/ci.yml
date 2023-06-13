@@ -1,0 +1,19 @@
+name: deploy to ec2
+on: push
+jobs:
+  Checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: install ssh keys
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+      - name: upload
+        run: rsync -avr htdocs ec2-user@${{ secrets.SSH_HOST }}:/var/www/vinylshop/
+      - name: build
+        run: ssh ec2-user@${{ secrets.SSH_HOST }} "cd /var/www/vinylshop/htdocs && composer install --no-dev --optimize-autoloader && npm install && npm run build"
+      - name: change perms idk
+        run: ssh ec2-user@${{ secrets.SSH_HOST }} "sudo chmod +777 /var/www/vinylshop/htdocs/var -R"

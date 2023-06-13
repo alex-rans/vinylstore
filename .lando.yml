@@ -15,9 +15,9 @@ config:
   config:
 services:
   database:
-    database: laravel
-    username: laravel
-    password: laravel
+    database: vinylshop
+    username: vinylshop
+    password: vinylshop
     host: database
     port: 3306
   node:

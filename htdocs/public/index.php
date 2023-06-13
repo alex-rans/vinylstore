@@ -21,7 +21,7 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-require __DIR__.'/../../vinylshop/vendor/autoload.php';
+require __DIR__.'/../../htdocs/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ require __DIR__.'/../../vinylshop/vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../../vinylshop/bootstrap/app.php';
+$app = require_once __DIR__.'/../../htdocs/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
