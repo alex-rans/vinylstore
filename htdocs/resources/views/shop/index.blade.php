@@ -40,7 +40,7 @@
             </button>
         </div>
     @endif
-    {{ $records->links() }}
+    {{ $records->links("pagination::bootstrap-4") }}
     <div class="row">
         @foreach($records as $record)
         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
@@ -62,7 +62,7 @@
         </div>
         @endforeach
     </div>
-    {{ $records->links() }}
+    {{ $records->links("pagination::bootstrap-4") }}
 @endsection
 @section('script_after')
     <script>
